@@ -29,9 +29,9 @@
 		<form class="form-inline" role="form" name="circleform" onSubmit="addCircle()">
 		  <div class="form-group">
 			<label for="email">Circle</label>
-			<input type="text" class="form-control" name="radius" placeholder="Radius" style="width:100px">
+			<input type="text" class="form-control" id="radius" placeholder="Radius" style="width:100px">
 		  </div>
-		  <button type="submit" class="btn btn-default">Add</button>
+		  <button type="button" onclick="addCircle()">Add</button>
 		</form>	
 	</fieldset>
 	
@@ -66,24 +66,34 @@
 
 </div>
 
-<p id="demo">
+<p id="total"></p>
+    
+<p id="circles">
 </p>
+    
+
 
 <script>
-	
+
+    
+// Super class Shape
 function Shape(){
-	this.counter = 0;
+	Shape.count++;
 	this.area = function() {};
 }
+Shape.count = 0;
 
+// Circle Prototype
 function Circle(radius){
 	Shape.call(this);
 	this.radius = radius;
-	this.area = function() {return (radius*3.14159)^2;};
+    this.area = function() {return (radius*radius)*3.14159;};
+    Circle.count++;
 }
-
 Circle.prototype = Object.create(Shape.prototype);
+Circle.count = 0;
 
+// Square prototype
 function Square(side){
 	Shape.call(this);
 	this.side = side;
@@ -91,23 +101,53 @@ function Square(side){
 Square.prototype = Object.create(Shape.prototype);
 
 
-var emp1 = new Circle(10);
-var emp2 = new Circle(10);
 
+var circles = [];
+var square = [];
+var reactangle = [];
+var triangle = [];
+    
 
-emp1.city ="Dartmouth";
+//
+//for(prop in emp1){
+//    demo.innerHTML += prop + ":" + circles[i][prop] + "<BR>";
+//}   
 
-var demo = document.getElementById("demo");
+    
 
-for(prop in emp1){
-	demo.innerHTML += prop + ":" + emp1[prop] + "<BR>";
-}
 
 function addCircle()
 {
-	alert("test");
-	alert($('radius').value());
+    // get specs
+    var radiusInput = document.getElementById('radius');
+    var radius = radiusInput.value;
+    radiusInput.value = "";
+    if (radius == "")
+        radius = 0;
+    
+    // create circle
+    var newCircle = new Circle(radius);
+    
+    // add to array
+    circles.push(newCircle);
+
+
+    
+    var element = document.getElementById("circles");
+    var text = "<p>";
+    for (i = 0; i < circles.length; i++) {
+        text += "Radius: " + circles[i].radius + "<br>Area: " + circles[i].area() + "<p>";
+    }
+    element.innerHTML = "<h4>Circle Count: "+Circle.count+"</h4><p>" + text;
+    updateTotalCountUI();
 }
+    
+function updateTotalCountUI()
+{
+    var element = document.getElementById('total');
+    element.innerHTML = "<h3>Total Shapes: "+Shape.count+"</h3>";
+}
+
 
 </script>
 
