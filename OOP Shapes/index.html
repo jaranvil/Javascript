@@ -18,17 +18,20 @@
 
 </style>
     
+
+	
 </head>
 
 <body>
 <h2>Web 2000 - Shapes</h2>    
 <div class="row">
 	<fieldset class="col-sm-2 control-section">		
-		<form class="form-inline" role="form">
+		<form class="form-inline" role="form" name="circleform" onSubmit="addCircle()">
 		  <div class="form-group">
 			<label for="email">Circle</label>
-			<input type="email" class="form-control" id="email" placeholder="Radius" style="width:100px">
+			<input type="text" class="form-control" name="radius" placeholder="Radius" style="width:100px">
 		  </div>
+		  <button type="submit" class="btn btn-default">Add</button>
 		</form>	
 	</fieldset>
 	
@@ -62,6 +65,51 @@
 	</fieldset>
 
 </div>
+
+<p id="demo">
+</p>
+
+<script>
+	
+function Shape(){
+	this.counter = 0;
+	this.area = function() {};
+}
+
+function Circle(radius){
+	Shape.call(this);
+	this.radius = radius;
+	this.area = function() {return (radius*3.14159)^2;};
+}
+
+Circle.prototype = Object.create(Shape.prototype);
+
+function Square(side){
+	Shape.call(this);
+	this.side = side;
+}
+Square.prototype = Object.create(Shape.prototype);
+
+
+var emp1 = new Circle(10);
+var emp2 = new Circle(10);
+
+
+emp1.city ="Dartmouth";
+
+var demo = document.getElementById("demo");
+
+for(prop in emp1){
+	demo.innerHTML += prop + ":" + emp1[prop] + "<BR>";
+}
+
+function addCircle()
+{
+	alert("test");
+	alert($('radius').value());
+}
+
+</script>
 
 </body> 
 </html>
