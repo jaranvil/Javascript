@@ -1,4 +1,6 @@
 
+
+
 function getBooks(searchString)
 {
 	var http = new XMLHttpRequest();
@@ -8,8 +10,8 @@ function getBooks(searchString)
 		if(http.readyState === 4 && http.status=== 200){
 			console.log(http.responseText);
 			json = http.responseText;
-			console.log(json);
-			var obj = JSON.parse(json);            
+			
+			var obj = JSON.parse(json);                      
             for (i in obj.books)
                 books.push(obj.books[i]);
             
@@ -71,6 +73,9 @@ function compareWords(word1, word2)
     else
         length = word1.length;
         
+    if (length < 2)
+        return false;
+    
     if (word2.length < 3)
         threshold = 0;
     if (word2.length > 5)
@@ -121,10 +126,12 @@ function searchBooks(allBooks, searchString)
     // search required properties
     for (var i = 0; i < allBooks.length; i++)   // loop all books
     {
+        var match = true;
         for (var property in allBooks[i])       // loop each property of book
-        {
+        {  
             for (var z = 0;z<attributeKeys.length;z++)  // loop at properties that are being searched on
             {
+                var propertyMatched = false;                
                 if (attributeKeys[z] == property)       // this property is being search on
                 {
                     var termString = attributeSearchTerms[z].toLowerCase();                        
@@ -140,18 +147,26 @@ function searchBooks(allBooks, searchString)
                         for (var y = 0;y < propertyWords.length;y++)
                             if (compareWords(propertyWords[y].toLowerCase(), terms[x]))
                             {
-                                var duplicate = false;
-                                for (var t = 0;t<results.length;t++)
-                                {
-                                    if (allBooks[i].title.text == results[t].title.text)
-                                        duplicate = true;
-                                }
-                                if (!duplicate)
-                                    results.push(allBooks[i]);
+                                propertyMatched = true;
                             }    
                     }
                 }
+                if (!propertyMatched && property == attributeKeys[z])
+                    match = false;
             }
+
+        }
+        // end of this book
+        if (match)
+        {
+            var duplicate = false;
+            for (var t = 0;t<results.length;t++)
+            {
+                if (allBooks[i].title.text == results[t].title.text)
+                    duplicate = true;
+            }
+            if (!duplicate)
+                results.push(allBooks[i]);
         }
     } 
     var container = document.getElementById("tree");

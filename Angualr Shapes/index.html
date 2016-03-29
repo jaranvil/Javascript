@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<body ng-app="shapeApp">
+
+<div ng-controller="mainController">
+
+    <p>Circles: <span ng-bind="circleCount"></span></p>
+
+</div>
+
+<div ng-controller="circleController">
+    
+    Radius: <input ng-model="radius">
+    <p>Area: <span ng-bind="area()"></span></p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
