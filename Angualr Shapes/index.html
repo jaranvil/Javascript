@@ -3,11 +3,12 @@
     
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-<body ng-app="shapeApp">
+<body ng-app="shapeApp" ng-controller="mainController">
 
-<div ng-controller="mainController">
+<div>
 
     <p>Circles: <span ng-bind="circleCount"></span></p>
+    <p>Array: <span ng-bind="displayCircles()"></span></p>
 
 </div>
 
@@ -15,7 +16,7 @@
     
     Radius: <input ng-model="radius">
     <p>Area: <span ng-bind="area()"></span></p>
-
+    <button ng-click="addCircle()">Add Circle</button>
 </div>
 
 <script src="script.js"></script>
