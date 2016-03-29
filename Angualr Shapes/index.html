@@ -2,22 +2,99 @@
 <html>
     
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<body ng-app="shapeApp" ng-controller="mainController">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<style>
+    .control-section {
+    border: 1px;
+	background-color: #eeeeee;
+}
+</style>
+    
+<body ng-app="shapeApp" ng-controller="mainController" style="padding:20px">
+
+<h2>Web 2000 - Angular Shapes</h2>   
+    
+    
+<div class="row" ng-controller="circleController" >
+	<fieldset class="col-sm-2 control-section">		
+		<form class="form-inline" role="form" name="circleform" onSubmit="addCircle()">
+		  <div class="form-group">
+			<label for="email">Circle</label>
+			<input ng-model="radius" placeholder="Radius">
+		  </div>
+		  <button ng-click="addCircle()">Add Circle</button>
+		</form>	
+	</fieldset>
+	
+	<fieldset class="col-sm-2 control-section">		
+		<form class="form-inline" role="form">
+		  <div class="form-group">
+			<label for="email">Square</label>
+			<input type="text" class="form-control" id="side" placeholder="Side" style="width:75px">
+		  </div>
+            <button type="button" onclick="addSquare()">Add</button>
+		</form>	
+	</fieldset>
+	
+	<fieldset class="col-sm-2 control-section">		
+		<form class="form-inline" role="form">
+		  <div class="form-group">
+			<label for="email">Rec.</label>
+			<input type="text" class="form-control" id="length" placeholder="Length" style="width:50px">
+			<input type="text" class="form-control" id="width" placeholder="Width" style="width:50px">			
+		  </div>
+            <button type="button" onclick="addRectangle()">Add</button>
+		</form>	
+	</fieldset>
+	
+	<fieldset class="col-sm-2 control-section">		
+		<form class="form-inline" role="form">
+		  <div class="form-group">
+			<label for="email">Tri</label>
+			<input type="text" class="form-control" id="side1" placeholder="Side" style="width:50px">
+			<input type="text" class="form-control" id="side2" placeholder="Side" style="width:50px">		
+		  </div>
+          <button type="button" onclick="addTriangle()">Add</button>
+		</form>	
+	</fieldset>
+
+</div>
+    
+
+<!--
 <div>
 
     <p>Circles: <span ng-bind="circleCount"></span></p>
     <p>Array: <span ng-bind="displayCircles()"></span></p>
 
 </div>
+-->
 
-<div ng-controller="circleController">
+
+<h3>Total Shapes: <span ng-bind="totalShapes()"></span></h3>
     
-    Radius: <input ng-model="radius">
-    <p>Area: <span ng-bind="area()"></span></p>
-    <button ng-click="addCircle()">Add Circle</button>
+<div class="row">
+	<div class="col-sm-2 control-section">	
+        <p id="circles"></p>
+    </div>
+    <div class="col-sm-2 control-section">	
+        <p id="squares"></p>
+    </div>
+    <div class="col-sm-2 control-section">	
+        <p id="rectangles"></p>
+    </div>
+    <div class="col-sm-2 control-section">	
+        <p id="triangles"></p>
+    </div>
 </div>
+
 
 <script src="script.js"></script>
 </body>
