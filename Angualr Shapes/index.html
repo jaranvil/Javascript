@@ -4,6 +4,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="style.css">
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -47,7 +49,7 @@
     
 <div ng-app="rectangle" ng-controller="rectController" >
     <div class="col-sm-3">
-        <label for="email">Rectangle</label>
+        <label for="email">Rectangle</label><br>
         <input ng-model="width" placeholder="Width" id="width_input">
         <input ng-model="height" placeholder="Height" id="height_input">
         <button ng-click="addRect()">Add Rectangle</button>    
@@ -59,7 +61,7 @@
     
 <div ng-app="triangle" ng-controller="triController" >
     <div class="col-sm-3">
-        <label for="email">Triangle</label>
+        <label for="email">Triangle</label><br>
         <input ng-model="side1" placeholder="side1" id="side1_input">
         <input ng-model="side2" placeholder="side2" id="side2_input">
         <button ng-click="addTri()">Add Triangle</button>    
